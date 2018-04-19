@@ -1,0 +1,8 @@
+---
+- hosts: aws
+  tasks:
+  - name: Install httpd web server
+    yum: name=httpd state=present
+#    yum: name=http://nginx.org/packages/rhel/7/x86_64/RPMS/nginx-1.10.2-1.el7.ngx.x86_64.rpm state=present allow_downgrade=yes
+  - name: Start installed httpd web service
+    service: name=httpd state=restarted
