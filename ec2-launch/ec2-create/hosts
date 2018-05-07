@@ -1,0 +1,7 @@
+[local]
+localhost
+35.172.136.141
+35.168.112.194
+[web]
+webfe ansible_host=18.206.14.143
+web ansible_host=18.206.83.165
