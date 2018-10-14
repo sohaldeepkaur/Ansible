@@ -1,0 +1,12 @@
+---
+- hosts: hotel
+  tasks:
+  - name: create anup user
+    user: 
+     name: anup
+     state: absent
+     remove: yes
+    
+
+
+#mkpasswd --method=sha-512

@@ -1,0 +1,11 @@
+---
+
+# Ansible when variable not equals another value
+- hosts: hotel
+  vars:
+    test1: "Hello Anup"
+  tasks:
+  - name: Ansible when variable not equals example
+    debug:
+      msg: "Not Equals"
+    when: test1 != "Hello World"

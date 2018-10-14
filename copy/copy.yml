@@ -1,0 +1,11 @@
+---
+- hosts: hotel
+  tasks: 
+  - name: copy file to remote server
+    copy:
+     src: test.txt
+     dest: /tmp
+     owner: ankit
+     group: ankit
+     mode: 0644
+    

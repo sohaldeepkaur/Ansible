@@ -1,0 +1,11 @@
+#Ansible when variable contains string
+#We can use variable.find for checking the contents. 
+---
+- hosts: hotel
+  vars:
+    test1: "Bye anup"
+  tasks:
+  - name: Ansible when variable contains string example example
+    debug:
+      msg: "Equals"
+    when: test1.find("World") != -1

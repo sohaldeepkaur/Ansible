@@ -1,0 +1,7 @@
+- hosts: localhost
+  tasks:
+  - name: Exclude some packages from upgrade in Ansible.
+    yum:
+      name: "*"
+      state: latest
+      exclude: git*

@@ -1,0 +1,12 @@
+---
+
+# Ansible when variable equals another value
+
+- hosts: hotel
+  vars:
+    test1: "Hello anup"
+  tasks:
+  - name: Ansible when variable equals example
+    debug:
+      msg: "Equals"
+    when: test1 == "Hello World"

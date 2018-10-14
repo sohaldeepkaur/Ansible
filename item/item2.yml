@@ -1,0 +1,6 @@
+- hosts: localhost
+  tasks:
+  - name: Upgrade all yum packages ansible.
+    yum:
+      name: "*"
+      state: latest

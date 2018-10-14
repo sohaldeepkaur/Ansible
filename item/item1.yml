@@ -1,0 +1,12 @@
+---
+- hosts: hotel
+  tasks:
+  - name: Installing multiple packages
+    yum:
+      name: "{{ item }}"
+      state: present
+    with_items:
+    - git
+    - wget
+    - mariadb
+

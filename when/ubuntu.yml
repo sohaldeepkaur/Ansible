@@ -1,0 +1,3 @@
+---
+- name: Install httpd service on aws server
+  apt: name=nginx state=present

@@ -1,0 +1,9 @@
+---
+
+- name: nginx installtion for both centos and ubuntu
+  hosts: localhost
+  tasks:
+  - include: ubuntu.yml
+    when: ansible_os_family == "Debian"
+  - include: centos.yml
+    when: ansible_os_family == "RedHat" 

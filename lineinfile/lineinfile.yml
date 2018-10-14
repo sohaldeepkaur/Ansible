@@ -1,0 +1,9 @@
+---
+- hosts: hotel
+  tasks:
+    - name: Ansible insert lineinfile example
+      lineinfile:
+        dest: /tmp/remote_server.txt
+        line: Inserting a line in a file.
+        state: present
+        create: yes

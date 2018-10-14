@@ -1,0 +1,21 @@
+---
+- hosts: hotel
+  tasks:
+  - name: create ankit user
+    user: 
+     name: ankit
+     state: present
+     password: $6$ssNsFDpyBW$KMZ755NM7F9rKQhCack7q3VivPof4MZv8/IK7XS3iEO1fxHLmeL8fFwQongzgwy.WWEFKSRANLDUPYOxU8DA//
+  
+  - name: Add ankit user to the sudoers
+    copy:
+     dest: "/etc/sudoers.d/ankit"
+     content: "ankit  ALL=(ALL)  NOPASSWD: ALL"
+  - name: Deploy SSH Key
+    authorized_key:
+     user: ankit
+     key: "{{ lookup('file', '/root/.ssh/id_rsa.pub') }}"
+     state: present
+
+
+#mkpasswd --method=sha-512

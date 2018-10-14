@@ -1,0 +1,4 @@
+---
+- name: Install httpd service on aws server
+  yum: name=nginx state=present
+

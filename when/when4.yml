@@ -1,0 +1,9 @@
+#If the variable value is registered from a shell command you may have to use stdout.find to check the content.
+- hosts: hotel
+  tasks:
+  - shell: cat /etc/temp.txt
+    register: output
+  - name: Ansible when variable contains string example example
+    debug:
+      msg: "Equals"
+    when: output.stdout.find("World") != -1
