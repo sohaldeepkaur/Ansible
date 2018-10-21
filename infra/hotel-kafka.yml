@@ -1,0 +1,9 @@
+---
+ - hosts: hotel
+   roles:
+   - {role: common, tags: ['common']}
+   - {role: java1.8, tags: ['java']}
+   - {role: zookeeper, tags: ['zookeeper']}
+   - {role: kafka, tags: [ 'kafka' ]}
+ 
+

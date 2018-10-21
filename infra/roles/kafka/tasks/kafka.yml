@@ -1,0 +1,58 @@
+---
+- name: setup group
+  group: name=kafka system=yes
+
+- name: Setup user
+  user: name=kafka system=yes group=kafka
+
+
+- name: download kafka tar if not downloaded
+  get_url: url={{ kafka_url }}/{{ kafka_version }}/kafka_{{ kafka_package_name }}.tgz dest=/tmp/
+  tags: 
+    - kafka
+
+
+- name: Uncompress the kafka tar
+  unarchive: copy=no creates={{kafka_dir}} dest=/opt src="/tmp/kafka_{{ kafka_package_name }}.tgz"
+
+# The file name might be change in the future release
+- name: Rename the kafka folder 
+  command: mv /opt/kafka_{{ kafka_package_name }} /opt/kafka
+  ignore_errors: yes
+
+- name: change ownership on kafka directory
+  file: path={{ kafka_dir }} state=directory owner=kafka group=kafka recurse=yes
+
+
+- name: set kafka data dir
+  file: path={{ configuration.data_dir }} state=directory owner=kafka group=kafka
+  tags: 
+    - kafka
+
+- name: set kafka loggers dir
+  file: path={{ configuration.log_path }} state=directory owner=kafka group=kafka
+  tags:
+    - kafka
+
+- name: set kafka log topic dirs
+  file: path={{ configuration.log_dirs }} state=directory owner=kafka group=kafka
+  tags:
+    - kafka
+
+- name: set kafka configuration
+  template: src=templates/kafka.configuration.j2 dest={{ kafka_dir }}/config/server.properties force=yes
+  notify: restart kafka 
+  tags: 
+    - kafka
+
+
+
+- name: create upstart config
+  template: dest=/etc/init/kafka.conf owner=root group=root mode=644 src=kafka.conf.j2
+  notify: restart kafka
+  tags: [kafka_config]
+
+
+- name: start kafka
+  service: name=kafka state=started enabled=yes
+  tags: [kafka_config]

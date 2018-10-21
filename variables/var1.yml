@@ -1,0 +1,10 @@
+---
+- hosts: localhost 
+  vars:
+   my_content: "This is anup dubey"
+  tasks:
+  - name: create file using with contenet variables
+    copy:
+     dest: /tmp/var1.txt
+     content: "{{ my_content }}"
+    
