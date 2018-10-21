@@ -1,5 +1,5 @@
 ---
-- hosts: blockchain_gbx
+- hosts: blockchain
   roles:
    - {role: common, tags: ['common']}
    - {role: nodejs, tags: ['nodejs']}
