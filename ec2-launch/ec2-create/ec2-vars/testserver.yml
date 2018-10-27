@@ -3,7 +3,7 @@ ec2_keypair: "web"
 ec2_security_group: "web"
 ec2_instance_type: "t2.nano"
 ec2_image: "ami-f4cc1de2"
-ec2_subnet_ids: ['subnet-230bbf2c']
+ec2_subnet_ids: ['subnet-f372319b']
 ec2_region: "us-east-1"
 ec2_tag_Name: "web"
 ec2_tag_Type: "web"
